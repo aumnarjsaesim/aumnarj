@@ -1,0 +1,14 @@
+import { NextFunction, Request, Response } from "express";
+import { Format } from "@lib/format";
+import { BAD_REQUEST, BAD_GATEWAY, OK, INTERNAL_SERVER_ERROR, NOT_FOUND } from "http-status-codes";
+import createHttpError from 'http-errors'
+
+export class HomeController {
+    public static async insert(req: Request, res: Response, next: NextFunction) {
+        Let varidateReq  = true
+        if(!req.body.emp_id)varidateReq = false
+        if(!req.body.emp_firstname)varidateReq = false
+        if(!req.body.emp_lastname)varidateReq = false
+        if(!varidateReq) return next(createHttpError(BAD_REQUEST,"require emp_id,emp_firstname,emp_lastname"));
+    }
+}
